@@ -1,0 +1,21 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Login">    
+
+<div class="panel panel-default" style="max-width:300px; margin: 100px auto">
+  <div class="panel-heading">
+  	<h3 class="panel-title">Login</h3>
+  </div>
+  <div class="panel-body">
+    <form method="POST" action="${reverseRoute('controllers.ApplicationController','login')}">
+      <div class="form-group">
+        <label for="accountField">Account ID</label>
+        <input class="form-control" id="accountField" type="text" name="accountID" placeholder="Enter account ID" aria-describedby="accountHelp" required>
+        <small class="help-block" id="accountHelp">For demo purposes, fill in any ID in the above field. If the ID does not exists in the tenant database, it will be created automatically.</small>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+
+</@layout.myLayout>
