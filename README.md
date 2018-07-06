@@ -1,6 +1,6 @@
 # About this demo
 
-This demo aims to illustrate how to support multi-tenant databases using Ninja web framework. I hope this could be useful to developers who are looking to support multi-tenant databases, especially for existing Ninja applications that are now being upgraded to support multiple tenants in a software-as-a-service model.
+This demo aims to illustrate how to support multi-tenant databases using Ninja web framework. I hope this could be useful to developers who are looking to implement support for multi-tenant databases, especially for existing Ninja applications that are being upgraded to support multiple tenants in a software-as-a-service model.
 
 # Features of this demo
 
@@ -10,7 +10,7 @@ This demo aims to illustrate how to support multi-tenant databases using Ninja w
 
 # Setting up the demo
 
-The demo was developed on Ubuntu 16.04 (x64) for Ninja web framework 6.1.0 and will connect to MySQL databases on localhost. All software (maven, openjdk-8-jdk, mariadb-client and mariadb-server) are installed from Ubuntu official repositories. Please install these software before setting up this demo.
+The demo was developed on Ubuntu 16.04 (x64) for Ninja web framework 6.1.0 and will connect to MySQL/Maria databases on localhost. All software (maven, openjdk-8-jdk, mariadb-client and mariadb-server) are installed from Ubuntu official repositories. Please install these software before setting up this demo.
 
 1.  Create the databases and users needed for the demo. You can run the ```sql/databases.sql``` script using your favourite MySQL client as *root* user.
 ```
@@ -50,6 +50,8 @@ Check the tenant1 and tenant2 databases using your favourite MySQL clients. If t
 Compare the User tables on tenant1 and tenant2 databases. You will see different rows being created for each User table.
 
 You can continue to test with different account IDs, and create tasks for each account via the web UI. The system will know which database to use for the queries and data updates based on the web site's hostname.
+
+Tasks created via the web UI will be marked as "completed" within a few minutes by the *CompletionWorker* worker service at regular intervals.
 
 # General working of the demo
 
