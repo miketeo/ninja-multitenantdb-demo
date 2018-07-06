@@ -124,7 +124,7 @@ public class TenantDatabaseProvider implements Provider<EntityManager> {
 			try {
 				dbConfig = tenantCatalog.getTenantDatabaseConfig(tenantIdentifier);
 			} catch (Exception e) {
-				throw new TenantException(String.format("Cannot begin work unit for tenant '%s'", tenantIdentifier), e);
+				throw new TenantException(String.format("Cannot retrieve database config for tenant '%s'", tenantIdentifier), e);
 			}
 			if (dbConfig==null) {
 				throw new InvalidTenantException(tenantIdentifier);
