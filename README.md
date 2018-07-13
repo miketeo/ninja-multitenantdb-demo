@@ -70,7 +70,7 @@ You can
 
 The following changes need to be made to upgrade your application to support multi-tenant databases.
 
-1. Comment out ```ninja.migration.run``` and ```ninja.jpa.persistence_unit_name``` (including those that are prefixed with ```%prod```, ```%dev``` or ```%test```). **This is a very important as Ninja web framework's JPA module will interfere with the multi-tenant workings**.
+1. Comment out ```ninja.migration.run``` and ```ninja.jpa.persistence_unit_name``` properties (including those that are prefixed with ```%prod```, ```%dev``` or ```%test```). **This is very important as Ninja web framework's JPA module will interfere with the multi-tenant workings**.
 
 2. Copy the ```multitenantdb``` package in ```src/main/java``` in this demo to your application's code base.
 
@@ -86,6 +86,8 @@ The following changes need to be made to upgrade your application to support mul
 
 # Other matters
 
+- Do not use @UnitOfWork annotation. It is not supported.
+- Be sure to use *@Transactional* annotation from the *com.google.inject.persist* package.
 - Each tenant must be identified by an unique case-sensitive identifier. The identifier should preferably be limited to ASCII printable characters.
 - All tenant databases are upgraded via flyway migration when the Ninja web framework starts up. Depending on the number of tenant databases, this may not be desirable as it can prolong the startup time before the application is ready to process its first request.
 - Tenant databases that are added after the framework startup will not be migrated. You can improve **TenantDatabaseProvider** class to overcome this limitation.
